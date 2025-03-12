@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic Recognition App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-recycle"></i>
+                <h1>Plastic Recognition Scanner</h1>
+            </div>
+            <p class="tagline">Identify plastic types for better recycling</p>
+        </header>
+
+        <main>
+            <div class="camera-container">
+                <div class="viewfinder">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display:none;"></canvas>
+                    <div class="loading-indicator" id="loading">
+                        <div class="spinner"></div>
+                        <p>Analyzing...</p>
+                    </div>
+                </div>
+                <div class="camera-controls">
+                    <button id="capture-btn">
+                        <i class="fas fa-camera"></i>
+                        <span>Capture</span>
+                    </button>
+                    <button id="switch-camera-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Switch Camera</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-container" id="results">
+                <h2>Recognition Results</h2>
+                <div class="top-prediction" id="top-prediction">
+                    <div class="prediction-header">
+                        <span class="plastic-type" id="plastic-type"></span>
+                        <span class="confidence" id="confidence"></span>
+                    </div>
+                    <div class="plastic-info">
+                        <div class="info-row">
+                            <strong>Common Uses:</strong>
+                            <span id="common-uses"></span>
+                        </div>
+                        <div class="info-row">
+                            <strong>Recyclability:</strong>
+                            <span id="recyclability"></span>
+                        </div>
+                        <div class="info-row">
+                            <strong>Disposal:</strong>
+                            <span id="disposal"></span>
+                        </div>
+                        <div class="info-row">
+                            <strong>Environmental Impact:</strong>
+                            <span id="environmental-impact"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="other-predictions">
+                    <h3>Other Possibilities</h3>
+                    <div id="other-predictions-list"></div>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> How to Use</h3>
+                <ol>
+                    <li>Ensure good lighting on the plastic item</li>
+                    <li>Look for a recycling symbol with a number (if available)</li>
+                    <li>Position the item in the center of the camera</li>
+                    <li>Click "Capture" to analyze</li>
+                    <li>Review the results and recycling information</li>
+                </ol>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                <i class="fas fa-leaf"></i>
+                Helping make sustainable recycling decisions one scan at a time
+            </p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

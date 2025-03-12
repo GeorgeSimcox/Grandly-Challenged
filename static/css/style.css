@@ -1,0 +1,290 @@
+/* Base Styles and Variables */
+:root {
+    --primary-color: #2e8b57; /* Sea Green */
+    --secondary-color: #3cb371; /* Medium Sea Green */
+    --accent-color: #8fbc8f; /* Dark Sea Green */
+    --background-color: #f0f7f0; /* Light Green Tint */
+    --dark-color: #2c3e50;
+    --light-color: #ffffff;
+    --text-color: #333333;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Container Layout */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+}
+
+.tagline {
+    color: var(--dark-color);
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Main Content Layout */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .instructions {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* Camera Components */
+.camera-container {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.viewfinder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-color: #000;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    display: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.camera-controls {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background-color: var(--dark-color);
+}
+
+.camera-controls button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    color: var(--light-color);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.camera-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.camera-controls button i {
+    font-size: 1.5rem;
+}
+
+#capture-btn {
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+}
+
+#capture-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Results Components */
+.results-container {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    display: none;
+}
+
+.results-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.top-prediction {
+    margin-bottom: 20px;
+}
+
+.prediction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+}
+
+.plastic-type {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.plastic-info {
+    background-color: rgba(143, 188, 143, 0.1);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--accent-color);
+}
+
+.info-row {
+    margin-bottom: 10px;
+}
+
+.info-row strong {
+    color: var(--primary-color);
+}
+
+.other-predictions h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.prediction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.prediction-item:hover {
+    background-color: rgba(143, 188, 143, 0.1);
+}
+
+.prediction-item:last-child {
+    border-bottom: none;
+}
+
+/* Instructions Section */
+.instructions {
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+}
+
+.instructions h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instructions ol {
+    padding-left: 25px;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--accent-color);
+    color: var(--dark-color);
+}
+
+footer i {
+    color: var(--primary-color);
+}
